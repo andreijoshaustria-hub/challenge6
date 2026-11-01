@@ -11,12 +11,26 @@
     <p id="msg" style="color: red;"></p>
 
     <script>
+    function parseHex(hexStr) {
+        var str = '';
+        for (var i = 0; i < hexStr.length; i += 2) {
+            str += String.fromCharCode(parseInt(hexStr.substr(i, 2), 16));
+        }
+        return str;
+    }
+
     function login() {
         var u = document.getElementById("user").value;
         var p = document.getElementById("pass").value;
         
-        if (u.includes("' OR 1=1") || p.includes("' OR 1=1")) {
-            document.body.innerHTML = "<h1>Access Granted</h1><p>Flag{St.M@Rtyr}</p><br><p>Link to the next challenge:</p><a href='https://drive.google.com/drive/u/0/folders/1udZw4UheZehbo-jZfLvwpLruHAvslWgv' target='_blank'>Challenge 7 Folder</a>";
+        var targetPayload = parseHex("27204f5220313d31");
+        
+        if (u.includes(targetPayload) || p.includes(targetPayload)) {
+            
+            var secretFlag = parseHex("466c61677b53742e4d40527479727d");
+            var secretLink = parseHex("68747470733a2f2f64726976652e676f6f676c652e636f6d2f64726976652f752f302f666f6c646572732f3175645a77345568655a6568626f2d6a5a664c7677704c7275484176736c576776");
+            
+            document.body.innerHTML = "<h1>Access Granted</h1><p>" + secretFlag + "</p><br><p>Link to the next challenge:</p><a href='" + secretLink + "' target='_blank'>Challenge 7 Folder</a>";
         } else {
             document.getElementById("msg").innerText = "Invalid Login";
         }
