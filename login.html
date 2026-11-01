@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>Database Login</h1>
+    
+    Username: <input id="user"><br><br>
+    Password: <input id="pass"><br><br>
+    <button onclick="login()">Submit</button>
+    
+    <p id="msg" style="color: red;"></p>
+
+    <script>
+    function login() {
+        var u = document.getElementById("user").value;
+        var p = document.getElementById("pass").value;
+        
+        if (u.includes("' OR 1=1") || p.includes("' OR 1=1")) {
+            document.body.innerHTML = "<h1>Access Granted</h1><p>Flag{St.M@Rtyr}</p><br><p>Link to the next challenge:</p><a href='https://drive.google.com/drive/u/0/folders/1udZw4UheZehbo-jZfLvwpLruHAvslWgv' target='_blank'>Challenge 7 Folder</a>";
+        } else {
+            document.getElementById("msg").innerText = "Invalid Login";
+        }
+    }
+    </script>
+
+</body>
+</html>
